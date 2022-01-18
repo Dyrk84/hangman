@@ -1,0 +1,14 @@
+ad hoc review | A review technique performed informally without a structured process
+checklist-based review | A review technique guided by a list of questions or required attributes
+dynamic testing | Testing that involves the execution of the test item
+formal review | A type of review that follows a defined process with a formally documented output
+informal review | A type of review that does not follow a defined process and has no formally documented output
+inspection | A type of formal review to identify issues in a work product, which provides measurement to improve the review process and the software development process
+perspective-based reading | A review technique in which a work product is evaluated from the perspective of different stakeholders with the purpose to derive other work products
+review | A type of static testing in which a work product or process is evaluated by one or more individuals to detect defects or to provide improvements
+role-based review | A type of static testing in which a work product or process is evaluated by one or more individuals to detect defects or to provide improvements
+scenario-based review | A review technique in which a work product is evaluated to determine its ability to address specific scenarios
+static analysis | The process of evaluating a component or system without executing it, based on its form, structure, content, or documentation
+static testing | Testing that does not involve the execution of a test item
+technical review | A formal review by technical experts that examine the quality of a work product and identify discrepancies from specifications and standards
+walkthrough | A type of review in which an author leads members of the review through a work product and the members ask questions and make comments about possible issues

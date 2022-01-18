@@ -1,0 +1,31 @@
+coverage | The degree to which specified coverage items have been determined or have been exercised by a test suite expressed as a percentage
+debugging | The process of finding, analyzing and removing the causes of failures in a component or system
+defect | An imperfection or deficiency in a work product where it does not meet its requirements or specifications
+error | A human action that produces an incorrect result
+failure | An event in which a component or system does not perform a required function within specified limits
+quality | The degree to which a component or system satisfies the stated and implied needs of its various stakeholders
+quality assurance | Activities focused on providing confidence that quality requirements will be fulfilled
+root cause | A source of a defect such that if it is removed, the occurrence of the defect type is decreased or removed
+test analysis | The activity that identifies test conditions by analyzing the test basis
+test basis | The body of knowledge used as the basis for test analysis and design
+test case | A set of preconditions, inputs, actions (where applicable), expected results and postconditions, developed based on test conditions
+test completion | The activity that makes testware available for later use, leaves test environments in a satisfactory condition and communicates the results of testing to relevant stakeholders
+test condition | A testable aspect of a component or system identified as a basis for testing
+test control | The activity that develops and applies corrective actions to get a test project on track when it deviates from what was planned
+test data | Data needed for test execution
+test design | The activity that derives and specifies test cases from test conditions
+test execution | The activity that runs a test on a component or system producing actual results
+test implementation | The activity that prepares the testware needed for test execution based on test analysis and design
+test monitoring | The activity that checks the status of testing activities, identifies any variances from planned or expected, and reports status to stakeholders
+test object | The work product to be tested
+test objective | The reason or purpose of testing
+test oracle | A source to determine an expected result to compare with the actual result of the system under test
+test planning | The activity of establishing or updating a test plan
+test procedure | A sequence of test cases in execution order, and any associated actions that may be required to set up the initial preconditions and any wrap up activities post execution
+test process | The set of interrelated activities comprising of test planning, test monitoring and control, test analysis, test design, test implementation, test execution, and test completion
+test suite | A set of test scripts or test procedures to be executed in a specific test run
+testing | The process consisting of all lifecycle activities, both static and dynamic, concerned with planning, preparation and evaluation of a component or system and related work products to determine that they satisfy specified requirements, to demonstrate that they are fit for purpose and to detect defects
+testware | Work products produced during the test process for use in planning, designing, executing, evaluating and reporting on testing
+traceability | The degree to which a relationship can be established between two or more work products
+validation | Confirmation by examination and through provision of objective evidence that the requirements for a specific intended use or application have been fulfilled
+verification | Confirmation by examination and through provision of objective evidence that specified requirements have been fulfilled

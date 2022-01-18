@@ -1,0 +1,21 @@
+configuration management | A discipline applying technical and administrative direction and surveillance to identify and document the functional and physical characteristics of a configuration item, control changes to those characteristics, record and report change processing and implementation status, and verify that it complies with specified requirements
+defect management | The process of recognizing, recording, classifying, investigating, resolving and disposing of defects
+defect report | Documentation of the occurrence, nature, and status of a defect
+entry criteria | The set of conditions for officially starting a defined task
+exit criteria | The set of conditions for officially completing a defined task
+product risk | A risk impacting the quality of a product
+project risk | A risk that impacts project success
+risk | A factor that could result in future negative consequences
+risk level | The qualitative or quantitative measure of a risk defined by impact and likelihood
+risk-based testing | Testing in which the management, selection, prioritization, and use of testing activities and resources are based on corresponding risk types and risk levels
+test approach | The implementation of the test strategy for a specific project
+test control | The activity that develops and applies corrective actions to get a test project on track when it deviates from what was planned
+test estimation | An approximation related to various aspects of testing
+test manager | The person responsible for project management of testing activities, resources, and evaluation of a test object
+test monitoring | The activity that checks the status of testing activities, identifies any variances from planned or expected, and reports status to stakeholders
+test plan | Documentation describing the test objectives to be achieved and the means and the schedule for achieving them, organized to coordinate testing activities
+test planning | The activity of establishing or updating a test plan
+test progress report | A type of test report produced at regular intervals about the progress of test activities against a baseline, risks, and alternatives requiring a decision
+test strategy | Documentation aligned with the test policy that describes the generic requirements for testing and details how to perform testing within an organization
+test completion report | A type of test report produced at completion milestones that provides an evaluation of the corresponding test items against exit criteria
+tester | A person who performs testing

@@ -1,0 +1,17 @@
+coverage, debugging, defect, error, failure, quality, quality assurance, root cause, test analysis, test basis,
+test case, test completion, test condition, test control, test data, test design, test execution,
+test implementation, test monitoring, test object, test objective, test oracle, test planning, test procedure,
+test process, test suite, testing, testware, traceability, validation, verification, acceptance testing, alpha testing,
+beta testing, change-related testing, commercial off-the-shelf,
+component integration testing, component testing, confirmation testing, contractual acceptance testing,
+functional testing, impact analysis, integration testing, maintenance testing, non-functional testing,
+operational acceptance testing, regression testing, regulatory acceptance testing, sequential development
+model, system integration testing, system testing, test basis, test case, test environment, test level, test
+object, test objective, test type, user acceptance testing, white-box testing, ad hoc review, checklist-based review,
+dynamic testing, formal review, informal review, inspection,
+perspective-based reading, review, role-based review, scenario-based review, static analysis, static
+testing, technical review, walkthrough, configuration management, defect management, defect report, entry criteria,
+exit criteria, product risk, project risk, risk, risk level, risk-based testing, test approach, test control,
+test estimation, test manager, test monitoring, test plan, test planning, test progress report, test strategy,
+test summary report, tester,
+

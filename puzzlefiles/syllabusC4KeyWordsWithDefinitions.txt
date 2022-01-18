@@ -1,0 +1,15 @@
+black-box test technique | A test technique based on an analysis of the specification of a component or system
+boundary value analysis | A black-box test technique in which test cases are designed based on boundary values
+checklist-based testing | An experience-based test technique whereby the experienced tester uses a high-level list of items to be noted, checked, or remembered, or a set of rules or criteria against which a product has to be verified
+coverage | The degree to which specified coverage items have been determined or have been exercised by a test suite expressed as a percentage
+decision coverage | The coverage of decision outcomes
+decision table testing | A black-box test technique in which test cases are designed to exercise the combinations of conditions and the resulting actions shown in a decision table
+error guessing | A test technique in which tests are derived on the basis of the tester's knowledge of past failures, or general knowledge of failure modes
+equivalence partitioning | A black-box test technique in which test cases are designed to exercise equivalence partitions by using one representative member of each partition
+experience-based test technique | A test technique only based on the tester's experience, knowledge and intuition
+exploratory testing | An approach to testing whereby the testers dynamically design and execute tests based on their knowledge, exploration of the test item and the results of previous tests
+state transition testing | A black-box test technique in which test cases are designed to exercise elements of a state transition model
+statement coverage | The coverage of executable statements
+test technique | A procedure used to define test conditions, design test cases, and specify test data
+use case testing | A black-box test technique in which test cases are designed to exercise use case behaviors
+white-box test technique | A test technique only based on the internal structure of a component or system

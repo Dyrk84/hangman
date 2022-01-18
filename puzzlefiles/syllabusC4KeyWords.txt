@@ -1,0 +1,3 @@
+black-box test technique, boundary value analysis, checklist-based testing, coverage, decision coverage,
+decision table testing, error guessing, equivalence partitioning, experience-based test technique,
+exploratory testing, state transition testing, statement coverage, test technique, use case testing, white-box test technique

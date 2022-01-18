@@ -1,0 +1,6 @@
+acceptance testing, alpha testing, beta testing, change-related testing, commercial off-the-shelf,
+component integration testing, component testing, confirmation testing, contractual acceptance testing,
+functional testing, impact analysis, integration testing, maintenance testing, non-functional testing,
+operational acceptance testing, regression testing, regulatory acceptance testing, sequential development
+model, system integration testing, system testing, test basis, test case, test environment, test level, test
+object, test objective, test type, user acceptance testing, white-box testing

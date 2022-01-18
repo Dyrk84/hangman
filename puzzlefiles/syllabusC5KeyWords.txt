@@ -1,0 +1,3 @@
+configuration management, defect management, defect report, entry criteria, exit criteria, product risk,
+project risk, risk, risk level, risk-based testing, test approach, test control, test estimation, test manager,
+test monitoring, test plan, test planning, test progress report, test strategy, test summary report, tester

@@ -1,0 +1,29 @@
+acceptance testing | A test level that focuses on determining whether to accept the system
+alpha testing | A type of acceptance testing performed in the developer's test environment by roles outside the development organization
+beta testing | A type of acceptance testing performed at an external site to the developer's test environment by roles outside the development organization
+change-related testing | A type of testing initiated by modification to a component or system
+commercial off-the-shelf | A type of product developed in an identical format for a large number of customers in the general market
+component integration testing | Testing in which the test items are interfaces and interactions between integrated components
+component testing | A test level that focuses on individual hardware or software components
+confirmation testing | A type of change-related testing performed after fixing a defect to confirm that a failure caused by that defect does not reoccur
+contractual acceptance testing | A type of acceptance testing performed to verify whether a system satisfies its contractual requirements
+functional testing | Testing performed to evaluate if a component or system satisfies functional requirements
+impact analysis | The identification of all work products affected by a change, including an estimate of the resources needed to accomplish the change
+integration testing | A test level that focuses on interactions between components or systems
+maintenance testing | Testing the changes to an operational system or the impact of a changed environment to an operational system
+non-functional testing | Testing performed to evaluate that a component or system complies with non-functional requirements
+operational acceptance testing | A type of acceptance testing performed to determine if operations and/or systems administration staff can accept a system
+regression testing | A type of change-related testing to detect whetherdefects have been introduced or uncovered in unchanged areas of the software
+regulatory acceptance testing | A type of acceptance testing performed to verify whether a system conforms to relevant laws, policies and regulations
+sequential development model | A type of software development lifecycle model in which a complete system is developed in a linear way of several discrete and successive phases with no overlap between them
+system integration testing | A test level that focuses on interactions between systems
+system testing | A test level that focuses on verifying that a system as a whole meets specified requirements
+test basis | The body of knowledge used as the basis for test analysis and design
+test case | A set of preconditions, inputs, actions (where applicable), expected results and postconditions, developed based on test conditions
+test environment | An environment containing hardware, instrumentation, simulators, software tools, and other support elements needed to conduct a test
+test level | A specific instantiation of a test process
+test object | The work product to be tested
+test objective | The reason or purpose of testing
+test type | A group of test activities based on specific test objectives aimed at specific characteristics of a component or system
+user acceptance testing | A type of acceptance testing performed to determine if intended users accept the system (UAT)
+white-box testing | Testing based on an analysis of the internal structure of the component or system

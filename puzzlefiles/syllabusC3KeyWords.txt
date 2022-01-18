@@ -1,0 +1,3 @@
+ad hoc review, checklist-based review, dynamic testing, formal review, informal review, inspection,
+perspective-based reading, review, role-based review, scenario-based review, static analysis, static
+testing, technical review, walkthrough

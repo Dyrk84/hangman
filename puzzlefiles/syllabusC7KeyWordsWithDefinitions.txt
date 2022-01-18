@@ -1,0 +1,105 @@
+coverage | The degree to which specified coverage items have been determined or have been exercised by a test suite expressed as a percentage
+debugging | The process of finding, analyzing and removing the causes of failures in a component or system
+defect | An imperfection or deficiency in a work product where it does not meet its requirements or specifications
+error | A human action that produces an incorrect result
+failure | An event in which a component or system does not perform a required function within specified limits
+quality | The degree to which a component or system satisfies the stated and implied needs of its various stakeholders
+quality assurance | Activities focused on providing confidence that quality requirements will be fulfilled
+root cause | A source of a defect such that if it is removed, the occurrence of the defect type is decreased or removed
+test analysis | The activity that identifies test conditions by analyzing the test basis
+test basis | The body of knowledge used as the basis for test analysis and design
+test case | A set of preconditions, inputs, actions (where applicable), expected results and postconditions, developed based on test conditions
+test completion | The activity that makes testware available for later use, leaves test environments in a satisfactory condition and communicates the results of testing to relevant stakeholders
+test condition | A testable aspect of a component or system identified as a basis for testing
+test control | The activity that develops and applies corrective actions to get a test project on track when it deviates from what was planned
+test data | Data needed for test execution
+test design | The activity that derives and specifies test cases from test conditions
+test execution | The activity that runs a test on a component or system producing actual results
+test implementation | The activity that prepares the testware needed for test execution based on test analysis and design
+test monitoring | The activity that checks the status of testing activities, identifies any variances from planned or expected, and reports status to stakeholders
+test object | The work product to be tested
+test objective | The reason or purpose of testing
+test oracle | A source to determine an expected result to compare with the actual result of the system under test
+test planning | The activity of establishing or updating a test plan
+test procedure | A sequence of test cases in execution order, and any associated actions that may be required to set up the initial preconditions and any wrap up activities post execution
+test process | The set of interrelated activities comprising of test planning, test monitoring and control, test analysis, test design, test implementation, test execution, and test completion
+test suite | A set of test scripts or test procedures to be executed in a specific test run
+testing | The process consisting of all lifecycle activities, both static and dynamic, concerned with planning, preparation and evaluation of a component or system and related work products to determine that they satisfy specified requirements, to demonstrate that they are fit for purpose and to detect defects
+testware | Work products produced during the test process for use in planning, designing, executing, evaluating and reporting on testing
+traceability | The degree to which a relationship can be established between two or more work products
+validation | Confirmation by examination and through provision of objective evidence that the requirements for a specific intended use or application have been fulfilled
+verification | Confirmation by examination and through provision of objective evidence that specified requirements have been fulfilled
+component integration testing | Testing in which the test items are interfaces and interactions between integrated components
+component testing | A test level that focuses on individual hardware or software components
+confirmation testing | A type of change-related testing performed after fixing a defect to confirm that a failure caused by that defect does not reoccur
+contractual acceptance testing | A type of acceptance testing performed to verify whether a system satisfies its contractual requirements
+functional testing | Testing performed to evaluate if a component or system satisfies functional requirements
+impact analysis | The identification of all work products affected by a change, including an estimate of the resources needed to accomplish the change
+integration testing | A test level that focuses on interactions between components or systems
+maintenance testing | Testing the changes to an operational system or the impact of a changed environment to an operational system
+non-functional testing | Testing performed to evaluate that a component or system complies with non-functional requirements
+operational acceptance testing | A type of acceptance testing performed to determine if operations and/or systems administration staff can accept a system
+regression testing | A type of change-related testing to detect whetherdefects have been introduced or uncovered in unchanged areas of the software
+regulatory acceptance testing | A type of acceptance testing performed to verify whether a system conforms to relevant laws, policies and regulations
+sequential development model | A type of software development lifecycle model in which a complete system is developed in a linear way of several discrete and successive phases with no overlap between them
+system integration testing | A test level that focuses on interactions between systems
+system testing | A test level that focuses on verifying that a system as a whole meets specified requirements
+test basis | The body of knowledge used as the basis for test analysis and design
+test case | A set of preconditions, inputs, actions (where applicable), expected results and postconditions, developed based on test conditions
+test environment | An environment containing hardware, instrumentation, simulators, software tools, and other support elements needed to conduct a test
+test level | A specific instantiation of a test process
+test object | The work product to be tested
+test objective | The reason or purpose of testing
+test type | A group of test activities based on specific test objectives aimed at specific characteristics of a component or system
+user acceptance testing | A type of acceptance testing performed to determine if intended users accept the system (UAT)
+white-box testing | Testing based on an analysis of the internal structure of the component or system
+ad hoc review | A review technique performed informally without a structured process
+checklist-based review | A review technique guided by a list of questions or required attributes
+dynamic testing | Testing that involves the execution of the test item
+formal review | A type of review that follows a defined process with a formally documented output
+informal review | A type of review that does not follow a defined process and has no formally documented output
+inspection | A type of formal review to identify issues in a work product, which provides measurement to improve the review process and the software development process
+perspective-based reading | A review technique in which a work product is evaluated from the perspective of different stakeholders with the purpose to derive other work products
+review | A type of static testing in which a work product or process is evaluated by one or more individuals to detect defects or to provide improvements
+role-based review | A type of static testing in which a work product or process is evaluated by one or more individuals to detect defects or to provide improvements
+scenario-based review | A review technique in which a work product is evaluated to determine its ability to address specific scenarios
+static analysis | The process of evaluating a component or system without executing it, based on its form, structure, content, or documentation
+static testing | Testing that does not involve the execution of a test item
+technical review | A formal review by technical experts that examine the quality of a work product and identify discrepancies from specifications and standards
+walkthrough | A type of review in which an author leads members of the review through a work product and the members ask questions and make comments about possible issues
+black-box test technique | A test technique based on an analysis of the specification of a component or system
+boundary value analysis | A black-box test technique in which test cases are designed based on boundary values
+checklist-based testing | An experience-based test technique whereby the experienced tester uses a high-level list of items to be noted, checked, or remembered, or a set of rules or criteria against which a product has to be verified
+coverage | The degree to which specified coverage items have been determined or have been exercised by a test suite expressed as a percentage
+decision coverage | The coverage of decision outcomes
+decision table testing | A black-box test technique in which test cases are designed to exercise the combinations of conditions and the resulting actions shown in a decision table
+error guessing | A test technique in which tests are derived on the basis of the tester's knowledge of past failures, or general knowledge of failure modes
+equivalence partitioning | A black-box test technique in which test cases are designed to exercise equivalence partitions by using one representative member of each partition
+experience-based test technique | A test technique only based on the tester's experience, knowledge and intuition
+exploratory testing | An approach to testing whereby the testers dynamically design and execute tests based on their knowledge, exploration of the test item and the results of previous tests
+state transition testing | A black-box test technique in which test cases are designed to exercise elements of a state transition model
+statement coverage | The coverage of executable statements
+test technique | A procedure used to define test conditions, design test cases, and specify test data
+use case testing | A black-box test technique in which test cases are designed to exercise use case behaviors
+white-box test technique | A test technique only based on the internal structure of a component or system
+configuration management | A discipline applying technical and administrative direction and surveillance to identify and document the functional and physical characteristics of a configuration item, control changes to those characteristics, record and report change processing and implementation status, and verify that it complies with specified requirements
+defect management | The process of recognizing, recording, classifying, investigating, resolving and disposing of defects
+defect report | Documentation of the occurrence, nature, and status of a defect
+entry criteria | The set of conditions for officially starting a defined task
+exit criteria | The set of conditions for officially completing a defined task
+product risk | A risk impacting the quality of a product
+project risk | A risk that impacts project success
+risk | A factor that could result in future negative consequences
+risk level | The qualitative or quantitative measure of a risk defined by impact and likelihood
+risk-based testing | Testing in which the management, selection, prioritization, and use of testing activities and resources are based on corresponding risk types and risk levels
+test approach | The implementation of the test strategy for a specific project
+test control | The activity that develops and applies corrective actions to get a test project on track when it deviates from what was planned
+test estimation | An approximation related to various aspects of testing
+test manager | The person responsible for project management of testing activities, resources, and evaluation of a test object
+test monitoring | The activity that checks the status of testing activities, identifies any variances from planned or expected, and reports status to stakeholders
+test plan | Documentation describing the test objectives to be achieved and the means and the schedule for achieving them, organized to coordinate testing activities
+test planning | The activity of establishing or updating a test plan
+test progress report | A type of test report produced at regular intervals about the progress of test activities against a baseline, risks, and alternatives requiring a decision
+test strategy | Documentation aligned with the test policy that describes the generic requirements for testing and details how to perform testing within an organization
+test completion report | A type of test report produced at completion milestones that provides an evaluation of the corresponding test items against exit criteria
+tester | A person who performs testing
