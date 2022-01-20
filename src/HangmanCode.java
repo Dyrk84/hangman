@@ -25,7 +25,7 @@ public class HangmanCode {
         if (lives > 0) {                        //ha nincs több élet, végéhez ér a játék
             gameCode();                         //ez már a játék folyama
         } else {
-            System.out.println("Game Over, the answer was this: " + wordToGuess);
+            System.out.println("Game Over, the answer was this: \"" + wordToGuess + "\"");
             oneMoreGame();
         }
     }
@@ -140,31 +140,7 @@ public class HangmanCode {
         List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
         printMenuForSyllabusKeywords();
         int chosenNumber = askForInt(validNumbers); //ennek az int-nek a segítségével választja ki a listFromFile() metódus, hogy melyik oszlopból csináljon listát.
-        switch (chosenNumber) {
-            case 1:
-                withOrWithoutDefinition(1);
-                break;
-            case 2:
-                withOrWithoutDefinition(2);
-                break;
-            case 3:
-                withOrWithoutDefinition(3);
-                break;
-            case 4:
-                withOrWithoutDefinition(4);
-                break;
-            case 5:
-                withOrWithoutDefinition(5);
-                break;
-            case 6:
-                withOrWithoutDefinition(6);
-                break;
-            case 7:
-                withOrWithoutDefinition(7);
-                break;
-            default:
-                System.out.println("Error with the switch in menuWordFromSyllabus(), used the default branch!");
-        }
+        withOrWithoutDefinition(chosenNumber);
     }
 
     private static void gameCode() { //a játék folyamata
@@ -204,6 +180,7 @@ public class HangmanCode {
     }
 
     private static void youWon() {
+        System.out.println("The puzzle was this: \"" + wordToGuess +"\" Good job!");
         System.out.println("You won!");
         oneMoreGame();
     }
