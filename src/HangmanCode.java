@@ -11,7 +11,6 @@ public class HangmanCode {
     private static int difficulty = 0;
     private static String wordToGuess = "";
     private static String hiddenWord = "";
-    private static List<String> availableLettersList = new ArrayList<>();
     private static List<String> usedLettersList = new ArrayList<>();
     private static int lives = 6;
     private static String definition = "";
@@ -165,7 +164,7 @@ public class HangmanCode {
                 robbery.setRunning(true);
             }
 
-            letterSearcher(askForLetter(availableLettersList)); //bekéri inputként a tippelt betüt, lekezeli a listákat, megnézi van-e a feladványban a betü, ha van beírja, ha nincs életet vesz le
+            letterSearcher(askForLetter()); //bekéri inputként a tippelt betüt, lekezeli a listákat, megnézi van-e a feladványban a betü, ha van beírja, ha nincs életet vesz le
 
             play();
         } else {
@@ -222,7 +221,6 @@ public class HangmanCode {
     }
 
     private static void letterSearcher(String inputLetter) {
-        availableLettersList.remove(inputLetter); //kiveszi az input betüt az elérhetőbetük listából
         if (!usedLettersList.contains(inputLetter)) {
             usedLettersList.add(inputLetter); //berakja az input betüt a használtbetük listájába, ha még nincs benne
             String lowerCaseWordToGuess = wordToGuess.toLowerCase(); //azért van a lowerCase, hogy a nagy kezdőbetüket is átvizsgálja kisbetüs inputra
@@ -258,7 +256,7 @@ public class HangmanCode {
         }
     }
 
-    private static String askForLetter(List<String> availableLettersList) { //csak az availableLettersList stringjeit lehet beírni inputnak
+    private static String askForLetter() { //csak az availableLettersList stringjeit lehet beírni inputnak
         while (true) { //addig fut a loop, amíg nem fut hibába (vagyis amíg nem azt írják be, amit szeretnénk)
             try {
                 Scanner reader = new Scanner(System.in);
@@ -358,7 +356,6 @@ public class HangmanCode {
         difficulty = 0;
         wordToGuess = "";
         hiddenWord = "";
-        availableLettersList.clear();
         usedLettersList.clear();
     }
 }
