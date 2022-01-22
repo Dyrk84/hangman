@@ -14,7 +14,9 @@ public class HangmanCode {
     private static List<String> availableLettersList = new ArrayList<>();
     private static List<String> usedLettersList = new ArrayList<>();
     private static int lives = 6;
-    private static String definition= "";
+    private static String definition = "";
+    private static boolean firstThreadStart = false;
+    static Robbery robbery = new Robbery();
 
     public static void play() {
         if (start) {                            //ennek az if-nek a tartalma csak akkor fut le, ha kezdődik a játék (a start boolean értéke az if után false-ra állítódik)
@@ -30,7 +32,7 @@ public class HangmanCode {
         }
     }
 
-    private static void syllabusChapterMapCreator(String filePath){
+    private static void syllabusChapterMapCreator(String filePath) {
         HashMap<String, String> map = new HashMap<>();
         String line;
         try {
@@ -46,11 +48,11 @@ public class HangmanCode {
                 }
             }
             reader.close();
-        } catch (Exception exceptionSyllabusChapterMapCreator){
+        } catch (Exception exceptionSyllabusChapterMapCreator) {
             System.out.println("exception in listFromFile(): " + exceptionSyllabusChapterMapCreator);
         }
         List<String> mapKeys = new ArrayList<>();
-        for (String keys : map.keySet()){
+        for (String keys : map.keySet()) {
             mapKeys.add(keys);
         }
         randomWordCreator(mapKeys);
@@ -105,7 +107,7 @@ public class HangmanCode {
         System.out.println("**********************************************************************");
     }
 
-    private static void printMenuForSyllabusKeywords(){
+    private static void printMenuForSyllabusKeywords() {
         System.out.println("**********************************************************************");
         System.out.println("*         From which syllabus chapter do you want the puzzle?        *");
         System.out.println("*          (1) Syllabus Chapter1 keywords                            *");
@@ -136,7 +138,7 @@ public class HangmanCode {
         }
     }
 
-    private static void menuWordFromSyllabus(){
+    private static void menuWordFromSyllabus() {
         List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
         printMenuForSyllabusKeywords();
         int chosenNumber = askForInt(validNumbers); //ennek az int-nek a segítségével választja ki a listFromFile() metódus, hogy melyik oszlopból csináljon listát.
@@ -151,21 +153,37 @@ public class HangmanCode {
             if (!definition.equals("")) { //ha nincs beállítva definició, nem veszi ezt figyelembe (syllabusnál lehet definiciót kérni)
                 System.out.println("Definition: " + definition);
             }
-            if (testing) { System.out.println("for test: " + wordToGuess); }
+            if (testing) {
+                System.out.println("for test: " + wordToGuess);
+            } //ha a tesztelő mód be lett állítva, akkor kiírja a megfejtést
             System.out.println("Status of word to be guessed: " + hiddenWord);
+            if (!firstThreadStart) { //ha nincs bekapcsolva
+                robbery.start(); //be kell kapcsolni, de csak egyszer szabad
+                firstThreadStart = true;
+            }
+            if (!robbery.isRobberyWasSoon()){
+                robbery.setRunning(true);
+            }
+
             letterSearcher(askForLetter(availableLettersList)); //bekéri inputként a tippelt betüt, lekezeli a listákat, megnézi van-e a feladványban a betü, ha van beírja, ha nincs életet vesz le
+
             play();
         } else {
             youWon();
         }
+
     }
 
     private static void aFreshStart() { //csak ha új játék kezdődik, kezdeti beállításokért felelős
+
         reset();                            //ha új játékot szeretnénk kezdeni, kitörli az előző játék adatait
         setDifficulty();                    //ez a metódus inputból bekéri a usertől hogy milyen nehéz legyen a játék
-        menuWordsToPlayWith();                  //kilehet választani listából, milyen szavakkal szeretnénk játszani
+        menuWordsToPlayWith();              //kilehet választani listából, milyen szavakkal szeretnénk játszani
         hiddenWordMaker();                  //ez készíti el a kitalálandó szó rejtett változatát
-        lettersListMaker();                 //elkészíti az eredeti, és a használandó betüs listákat
+        if (lives <= 0) {                    //csak vesztes játék után jön elő
+            lives = 6;
+        }
+        robbery.setRobberyWasSoon(false);
     }
 
     private static void testMode() {
@@ -180,7 +198,7 @@ public class HangmanCode {
     }
 
     private static void youWon() {
-        System.out.println("The puzzle was this: \"" + wordToGuess +"\" Good job!");
+        System.out.println("The puzzle was this: \"" + wordToGuess + "\" Good job!");
         System.out.println("You won!");
         oneMoreGame();
     }
@@ -205,34 +223,38 @@ public class HangmanCode {
 
     private static void letterSearcher(String inputLetter) {
         availableLettersList.remove(inputLetter); //kiveszi az input betüt az elérhetőbetük listából
-        usedLettersList.add(inputLetter); //berakja az input betüt a használtbetük listába
-        String lowerCaseWordToGuess = wordToGuess.toLowerCase(); //azért van a lowerCase, hogy a nagy kezdőbetüket is átvizsgálja kisbetüs inputra
-        if (lowerCaseWordToGuess.contains(inputLetter)) {
-            String[] stringArrayFromLCWordToGuess = lowerCaseWordToGuess.split(""); //a lowerCasewordToGuess Stringet szétdarabolja betükre és betölti a tömbbe.
-            String[] stringArrayFromWordToGuess = wordToGuess.split(""); //ezzel tölti fel a cloneHiddenWord-öt, azért kell ez, hogy ha van nagy betü, akkor azt is rakja bele.
-            String[] stringArrayFromHiddenWord = hiddenWord.split(""); //ez alapján néz meg, hogy van-e már kitalált betü.
-            List<Integer> indexesOfMatchingLetters = new ArrayList<>();
-            List<Integer> indexesOfNonMatchingLetters = new ArrayList<>();
-            for (int i = 0; i < stringArrayFromLCWordToGuess.length; i++) { //ha a szóban az input stringhez, szóközhöz vagy kötöjelhez ér, akkor azt hozzáadja a hiddenWord Stringhez, egyébként alsó vonalat.
-                if (stringArrayFromLCWordToGuess[i].equals(inputLetter) || stringArrayFromLCWordToGuess[i].equals(" ") || stringArrayFromLCWordToGuess[i].equals("-")) { //ha benne van a betü, vagy a szóköz vagy a kötőjel
-                    indexesOfMatchingLetters.add(i); //elrakja az integer listába az index értékét
-                } else if (!stringArrayFromHiddenWord[i].equals("_")) { //ha már van benne kitalált betű
-                    indexesOfMatchingLetters.add(i);
-                } else {
-                    indexesOfNonMatchingLetters.add(i); //Ezek már csak a "_" lehetnek!
+        if (!usedLettersList.contains(inputLetter)) {
+            usedLettersList.add(inputLetter); //berakja az input betüt a használtbetük listájába, ha még nincs benne
+            String lowerCaseWordToGuess = wordToGuess.toLowerCase(); //azért van a lowerCase, hogy a nagy kezdőbetüket is átvizsgálja kisbetüs inputra
+            if (lowerCaseWordToGuess.contains(inputLetter)) {
+                String[] stringArrayFromLCWordToGuess = lowerCaseWordToGuess.split(""); //a lowerCasewordToGuess Stringet szétdarabolja betükre és betölti a tömbbe.
+                String[] stringArrayFromWordToGuess = wordToGuess.split(""); //ezzel tölti fel a cloneHiddenWord-öt, azért kell ez, hogy ha van nagy betü, akkor azt is rakja bele.
+                String[] stringArrayFromHiddenWord = hiddenWord.split(""); //ez alapján néz meg, hogy van-e már kitalált betü.
+                List<Integer> indexesOfMatchingLetters = new ArrayList<>();
+                List<Integer> indexesOfNonMatchingLetters = new ArrayList<>();
+                for (int i = 0; i < stringArrayFromLCWordToGuess.length; i++) { //ha a szóban az input stringhez, szóközhöz vagy kötöjelhez ér, akkor azt hozzáadja a hiddenWord Stringhez, egyébként alsó vonalat.
+                    if (stringArrayFromLCWordToGuess[i].equals(inputLetter) || stringArrayFromLCWordToGuess[i].equals(" ") || stringArrayFromLCWordToGuess[i].equals("-")) { //ha benne van a betü, vagy a szóköz vagy a kötőjel
+                        indexesOfMatchingLetters.add(i); //elrakja az integer listába az index értékét
+                    } else if (!stringArrayFromHiddenWord[i].equals("_")) { //ha már van benne kitalált betű
+                        indexesOfMatchingLetters.add(i);
+                    } else {
+                        indexesOfNonMatchingLetters.add(i); //Ezek már csak a "_" lehetnek!
+                    }
                 }
-            }
-            String cloneHiddenWord = "";
-            for (int j = 0; j < wordToGuess.length(); j++) {
-                if (indexesOfMatchingLetters.contains(j)) {
-                    cloneHiddenWord += stringArrayFromWordToGuess[j];
-                } else if (indexesOfNonMatchingLetters.contains(j)) {
-                    cloneHiddenWord += "_";
+                String cloneHiddenWord = "";
+                for (int j = 0; j < wordToGuess.length(); j++) {
+                    if (indexesOfMatchingLetters.contains(j)) {
+                        cloneHiddenWord += stringArrayFromWordToGuess[j];
+                    } else if (indexesOfNonMatchingLetters.contains(j)) {
+                        cloneHiddenWord += "_";
+                    }
                 }
+                hiddenWord = cloneHiddenWord;
+            } else {
+                lives -= difficulty;
             }
-            hiddenWord = cloneHiddenWord;
         } else {
-            lives -= difficulty;
+            System.out.println("This letter was already typed!");
         }
     }
 
@@ -240,32 +262,24 @@ public class HangmanCode {
         while (true) { //addig fut a loop, amíg nem fut hibába (vagyis amíg nem azt írják be, amit szeretnénk)
             try {
                 Scanner reader = new Scanner(System.in);
-                System.out.print("Please provide an letter (or quit) " + availableLettersList + ":");
-                System.out.println();
+                System.out.print("Please provide a letter or the word (or quit) :");
                 String inputLetter = reader.nextLine().toLowerCase();
                 if (inputLetter.equals(wordToGuess) || inputLetter.equals(wordToGuess.toLowerCase())) {
                     youWon();
                 }
-                if (availableLettersList.contains(inputLetter)) { //ez az if megnézi, a validOperators listában megtalálható-e az inputban megadott érték.
-                    if (inputLetter.equals("quit")) {
-                        exit();
-                    } else {
-                        return inputLetter;
-                    }
+                //if (availableLettersList.contains(inputLetter)) { //ez az if megnézi, a validOperators listában megtalálható-e az inputban megadott érték.
+                if (inputLetter.equals("quit")) {
+                    exit();
                 } else {
-                    System.out.println("Invalid user input!");
+                    return inputLetter;
                 }
+                //} else {
+                //  System.out.println("Invalid user input!");
+                //}
             } catch (InputMismatchException exceptionAskForLetter) {
                 System.out.println("exception in askForLetter: " + exceptionAskForLetter); //ez nem tudom mikor tudna felugrani...
             }
         }
-    }
-
-    private static void lettersListMaker() { //létrehozza a választható betük listáját.
-        for (char c = 'a'; c <= 'z'; c++) {
-            availableLettersList.add(String.valueOf(c));
-        }
-        availableLettersList.add("quit");
     }
 
     private static void hiddenWordMaker() {
@@ -325,7 +339,7 @@ public class HangmanCode {
         while (true) { //addig fut a loop, amíg nem fut hibába (vagyis amíg nem azt írják be, amit szeretnénk)
             try {
                 Scanner reader = new Scanner(System.in);
-                System.out.print("Please provide an number " + validNumbers + ":");
+                System.out.print("Please provide a number " + validNumbers + ":");
                 System.out.println();
                 int inputInteger = reader.nextInt();
                 if (validNumbers.contains(inputInteger)) { //ez az if megnézi, a validOperators listában megtalálható-e az inputban megadott érték.
