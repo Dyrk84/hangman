@@ -1,3 +1,5 @@
+package hu.hangman.utils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,22 +8,23 @@ import java.util.*;
 
 public class HangmanCode {
 
-    private static boolean testing = false;
-    private static boolean start = true;
-    private static int difficulty = 0;
-    private static String wordToGuess = "";
-    private static String hiddenWord = "";
-    private static List<String> usedLettersList = new ArrayList<>();
-    private static int lives = 6;
-    private static String definition = "";
-    private static boolean firstThreadStart = false;
-    static Robbery robbery = new Robbery();
+    private boolean testing = false;
+    private boolean start = true;
+    private int difficulty = 0;
+    private String wordToGuess = "";
+    private String hiddenWord = "";
+    private List<String> usedLettersList = new ArrayList<>();
+    private int lives = 6;
+    private String definition = "";
+    private boolean firstThreadStart = false;
+    Robbery robbery = new Robbery();
 
-    public static void play() {
+    public void play() {
         if (start) {                            //ennek az if-nek a tartalma csak akkor fut le, ha kezdődik a játék (a start boolean értéke az if után false-ra állítódik)
             aFreshStart();                      //kiraktam egy külön metódusba, hogy könyebben olvasható legyen a kód
         }
         start = false;                          //így az előbbieket csak a játék első körében futtatja le
+
         System.out.println("Lives: " + lives);
         if (lives > 0) {                        //ha nincs több élet, végéhez ér a játék
             gameCode();                         //ez már a játék folyama
@@ -31,7 +34,7 @@ public class HangmanCode {
         }
     }
 
-    private static void syllabusChapterMapCreator(String filePath) {
+    private void syllabusChapterMapCreator(String filePath) {
         HashMap<String, String> map = new HashMap<>();
         String line;
         try {
@@ -58,7 +61,7 @@ public class HangmanCode {
         definition = map.get(wordToGuess);
     }
 
-    private static List fileReader(String filePath) {
+    private List fileReader(String filePath) {
         String myFileContent = "";
         try {
             File myObj = new File(filePath);
@@ -79,12 +82,12 @@ public class HangmanCode {
         return listFromFileReader;
     }
 
-    private static void syllabusChapterListCreator(String filePath) {
+    private  void syllabusChapterListCreator(String filePath) {
         List<String> syllabusChapterOneWordsList = new ArrayList<>(fileReader(filePath)); //legyártja a listát a fileReader() segítségével
         randomWordCreator(syllabusChapterOneWordsList);
     }
 
-    private static void withOrWithoutDefinition(int pathNumber) {
+    private void withOrWithoutDefinition(int pathNumber) {
         List<Integer> validNumbers = Arrays.asList(1, 2);
         System.out.println("**********************************************************************");
         System.out.println("*        Want to use definitions for keywords? Yes(1) or No(2)       *");
@@ -97,7 +100,7 @@ public class HangmanCode {
         }
     }
 
-    private static void printMenuWordsToPlay() {
+    private void printMenuWordsToPlay() {
         System.out.println("**********************************************************************");
         System.out.println("*              What words would you like to play with?               *");
         System.out.println("*          (1) Syllabus keywords                                     *");
@@ -106,7 +109,7 @@ public class HangmanCode {
         System.out.println("**********************************************************************");
     }
 
-    private static void printMenuForSyllabusKeywords() {
+    private void printMenuForSyllabusKeywords() {
         System.out.println("**********************************************************************");
         System.out.println("*         From which syllabus chapter do you want the puzzle?        *");
         System.out.println("*          (1) Syllabus Chapter1 keywords                            *");
@@ -118,7 +121,7 @@ public class HangmanCode {
         System.out.println("**********************************************************************");
     }
 
-    private static void menuWordsToPlayWith() {
+    private void menuWordsToPlayWith() {
         List<Integer> validNumbers = Arrays.asList(0, 1, 2);
         printMenuWordsToPlay();
         int chosenNumber = askForInt(validNumbers); //ennek az int-nek a segítségével választja ki a listFromFile() metódus, hogy melyik oszlopból csináljon listát.
@@ -137,14 +140,14 @@ public class HangmanCode {
         }
     }
 
-    private static void menuWordFromSyllabus() {
+    private void menuWordFromSyllabus() {
         List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
         printMenuForSyllabusKeywords();
         int chosenNumber = askForInt(validNumbers); //ennek az int-nek a segítségével választja ki a listFromFile() metódus, hogy melyik oszlopból csináljon listát.
         withOrWithoutDefinition(chosenNumber);
     }
 
-    private static void gameCode() { //a játék folyamata
+    private void gameCode() { //a játék folyamata
         if (hiddenWord.contains("_")) {          //így nézi meg, hogy ki lett-e találva az összes betü (win)
             if (usedLettersList.size() > 0) {    //ha már van használt betű, akkor kinyomtatja, hogy a játékos lássa, hogy azt már nem lehet választani.
                 System.out.println("Used letters list: " + usedLettersList);
@@ -156,12 +159,12 @@ public class HangmanCode {
                 System.out.println("for test: " + wordToGuess);
             } //ha a tesztelő mód be lett állítva, akkor kiírja a megfejtést
             System.out.println("Status of word to be guessed: " + hiddenWord);
-            if (!firstThreadStart) { //ha nincs bekapcsolva
-                robbery.start(); //be kell kapcsolni, de csak egyszer szabad
-                firstThreadStart = true;
+            if (!firstThreadStart) { //csak a játék legelején tud bemenni ebbe az if-be.
+                robbery.start(); //be kell kapcsolni, de csak egyszer szabad a Thread miatt. A Thread folyamatosan fut, amíg ki nem lépünk, csak nem látszik.
+                firstThreadStart = true; //ezért nem lép be ide többször
             }
-            if (!robbery.isRobberyWasSoon()){
-                robbery.setRunning(true);
+            if (!robbery.isRobberyWasSoon()){ //azt nézi meg, hogy az adott játékkörben már volt-e rablás visszaszámlálás
+                robbery.setRunning(true); //amíg nincs vége a visszaszámlálásnak (a végén állítja át a robberyWasSoon boolean-t), a running true marad
             }
 
             letterSearcher(askForLetter()); //bekéri inputként a tippelt betüt, lekezeli a listákat, megnézi van-e a feladványban a betü, ha van beírja, ha nincs életet vesz le
@@ -173,7 +176,7 @@ public class HangmanCode {
 
     }
 
-    private static void aFreshStart() { //csak ha új játék kezdődik, kezdeti beállításokért felelős
+    private void aFreshStart() { //csak ha új játék kezdődik, kezdeti beállításokért felelős
 
         reset();                            //ha új játékot szeretnénk kezdeni, kitörli az előző játék adatait
         setDifficulty();                    //ez a metódus inputból bekéri a usertől hogy milyen nehéz legyen a játék
@@ -185,7 +188,7 @@ public class HangmanCode {
         robbery.setRobberyWasSoon(false);
     }
 
-    private static void testMode() {
+    private void testMode() {
         System.out.println("Want to play the game in test mode? If yes, type \"yes\" or just \"y\"!");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.next();
@@ -196,13 +199,13 @@ public class HangmanCode {
         menuWordsToPlayWith();
     }
 
-    private static void youWon() {
+    private void youWon() {
         System.out.println("The puzzle was this: \"" + wordToGuess + "\" Good job!");
         System.out.println("You won!");
         oneMoreGame();
     }
 
-    private static void oneMoreGame() {
+    private void oneMoreGame() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("One more game? If yes, type \"yes\" or just \"y\"!");
         String answer = scanner.next();
@@ -212,7 +215,7 @@ public class HangmanCode {
         } else exit();
     }
 
-    public static void exit() {
+    public void exit() {
         System.out.println("Good bye!");
         System.out.println();
         System.out.println("Author: David Diriczi");
@@ -220,7 +223,7 @@ public class HangmanCode {
         System.exit(1);
     }
 
-    private static void letterSearcher(String inputLetter) {
+    private void letterSearcher(String inputLetter) {
         if (!usedLettersList.contains(inputLetter)) {
             usedLettersList.add(inputLetter); //berakja az input betüt a használtbetük listájába, ha még nincs benne
             String lowerCaseWordToGuess = wordToGuess.toLowerCase(); //azért van a lowerCase, hogy a nagy kezdőbetüket is átvizsgálja kisbetüs inputra
@@ -256,7 +259,7 @@ public class HangmanCode {
         }
     }
 
-    private static String askForLetter() { //csak az availableLettersList stringjeit lehet beírni inputnak
+    private String askForLetter() {
         while (true) { //addig fut a loop, amíg nem fut hibába (vagyis amíg nem azt írják be, amit szeretnénk)
             try {
                 Scanner reader = new Scanner(System.in);
@@ -265,22 +268,18 @@ public class HangmanCode {
                 if (inputLetter.equals(wordToGuess) || inputLetter.equals(wordToGuess.toLowerCase())) {
                     youWon();
                 }
-                //if (availableLettersList.contains(inputLetter)) { //ez az if megnézi, a validOperators listában megtalálható-e az inputban megadott érték.
                 if (inputLetter.equals("quit")) {
-                    exit();
+                    oneMoreGame();
                 } else {
                     return inputLetter;
                 }
-                //} else {
-                //  System.out.println("Invalid user input!");
-                //}
             } catch (InputMismatchException exceptionAskForLetter) {
                 System.out.println("exception in askForLetter: " + exceptionAskForLetter); //ez nem tudom mikor tudna felugrani...
             }
         }
     }
 
-    private static void hiddenWordMaker() {
+    private void hiddenWordMaker() {
         String[] stringArrayFromWordToGuess = wordToGuess.split(""); //a wordToGuess Stringet szétdarabolja betükre és betölti a tömbbe.
         for (String elementOfStringArrayFromWordToGuess : stringArrayFromWordToGuess) { //ha a szóban szóközhöz vagy kötöjelhez ér, akkor azt hozzáadja a hiddenWord Stringhez, egyébként alsó vonalat.
             if (elementOfStringArrayFromWordToGuess.equals(" ") || elementOfStringArrayFromWordToGuess.equals("-")) {
@@ -291,12 +290,12 @@ public class HangmanCode {
         }
     }
 
-    public static void randomWordCreator(List<String> wordsFromFile) {
+    public void randomWordCreator(List<String> wordsFromFile) {
         Collections.shuffle(wordsFromFile);
         wordToGuess = wordsFromFile.get(0).trim(); //az összekevert listának kiveszi a 0. elemét és leveszi róla a fehér karaktereket
     }
 
-    public static void listFromFile(int chosenNumber, String path) {  //ez rakja össze a fileból a listát, ha a txt file formája ilyen: első szó | második szó
+    public void listFromFile(int chosenNumber, String path) {  //ez rakja össze a fileból a listát, ha a txt file formája ilyen: első szó | második szó
         List<String> wordsFromFile = new LinkedList<>();
         String line; //ebbe a Stringbe fogja másolni a fileból kiolvasott Stringet, amit aztán majd átmásol a parts tömbbe
         try {
@@ -317,7 +316,7 @@ public class HangmanCode {
         randomWordCreator(wordsFromFile);
     }
 
-    private static void countriesOrCapitalsSelector() {
+    private void countriesOrCapitalsSelector() {
         List<Integer> countriesOrCapitalsSelector = Arrays.asList(1, 2);
         System.out.println("**********************************************************************");
         System.out.println("*        Please select play mode: Countries(1) or Capitals(2)        *");
@@ -325,7 +324,7 @@ public class HangmanCode {
         listFromFile(askForInt(countriesOrCapitalsSelector), "puzzlefiles/countries-and-capitals.txt"); //az int alapján fogja eldönteni a listFromFile, hogy melyik oszlopot hazsnálja
     }
 
-    private static void setDifficulty() {
+    private void setDifficulty() {
         List<Integer> listOfDifficulty = Arrays.asList(1, 2, 3);
         System.out.println("**********************************************************************");
         System.out.println("*     Please choose a difficulty: easy(1), medium(2), hard(3)!       *");
@@ -333,7 +332,7 @@ public class HangmanCode {
         difficulty = askForInt(listOfDifficulty);
     }
 
-    private static int askForInt(List<Integer> validNumbers) { //a paraméterben lévő lista tartalma adja meg, hogy mi a valid Integer tartomány.
+    private int askForInt(List<Integer> validNumbers) { //a paraméterben lévő lista tartalma adja meg, hogy mi a valid Integer tartomány.
         while (true) { //addig fut a loop, amíg nem fut hibába (vagyis amíg nem azt írják be, amit szeretnénk)
             try {
                 Scanner reader = new Scanner(System.in);
@@ -351,7 +350,7 @@ public class HangmanCode {
         }
     }
 
-    private static void reset() { //ha új játékot szeretnénk kezdeni, kitörli az előző játék adatait
+    private void reset() { //ha új játékot szeretnénk kezdeni, kitörli az előző játék adatait
         testing = false;
         difficulty = 0;
         wordToGuess = "";
